@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<!--If company name is equal to ticker, display company stock data-->
+{% if ticker %}
+    {{ ticker }}
+{% endif %}
+
+
+<!--Stock Data-->
+
+{% if api %}
+
+    <!--If there is not api found, print error to screen-->
+    {% if api == "Error..." %}
+        There is problem with parsing your ticker data.
+        Please check to see if the information is correct.
+
+    {% else %}
+
+        <!--Publish individual company stock data-->
+        <h1>{{ api.companyName }}</h1><br>
+        Price: ${{ api.latestPrice }}<br>
+        Previous Close: {{ api.previousClose }}<br>
+        Market Cap: {{ api.marketCap }}<br>
+        TYD Change: {{ api.ytdChange }}<br>
+        52Wk High: {{ api.week52High }}<br>
+        52Wk Low: {{ api.week52Low }}<br>
+
+   
+
+
+    {% endif %}
+{% endif %}
+
+
+
+
+{% endblock %}
